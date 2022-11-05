@@ -1,11 +1,16 @@
 import React, { useRef } from 'react'
-import { connect } from 'react-redux'
-import { addService } from '../actions'
+import { connect,  useSelector} from 'react-redux'
+import { addService } from '../store/actions'
 import { nanoid } from 'nanoid'
 
 function AddServiceForm(props) {
   const name = useRef(null)
   const price = useRef(null)
+  const items = useSelector(state => state.services)
+
+  //name.current.value = editName || ""
+  //price.current.value = editPrice || ""
+  
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -23,7 +28,7 @@ function AddServiceForm(props) {
         <input type="number" 
         placeholder="Add price" 
         ref={price} />
-      <button type="submit">Add</button>
+      <button type="submit">Save</button>
     </form>
   );
 }

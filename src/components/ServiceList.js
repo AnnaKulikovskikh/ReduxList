@@ -1,16 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { delService } from '../actions'
-//import { editService } from '../actions'
+import { connect, useSelector } from 'react-redux'
+import { delService } from '../store/actions'
+//import { editService } from '../store/actions'
 
 function ServiceList(props) {
+
+  //const items = useSelector(state => state.services)
+  //console.log(items)
 
   function edit(id){
     //editService(id)
     delService(id)
   }
 
-  const listItems = props.contacts.map((val) =>
+  const listItems = props.services.map((val) =>
       <li key={val.id}>
         {val.name} - {val.price}
         <div>
@@ -24,7 +27,7 @@ function ServiceList(props) {
 
 function mapStateToProps(state) {
     return {
-      contacts: state.contacts
+      services: state.services
     }
 }
 
@@ -33,8 +36,3 @@ const mapDipatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDipatchToProps)(ServiceList)
-
-
-
-
-//export default connect(null, mapDipatchToProps)(AddServiceForm)

@@ -4,25 +4,8 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import store from './store/reducer'
 
-const initialState = {
-  contacts: [{id: "asdfasd234", name: "James Smith", price: 31}, {id: "asdfasd235", name: "Thomas Anderson", price: 29}] 
-}
-
-function reducer(state = initialState, action) {
-  switch(action.type) {
-    case 'ADD_SERVICE':
-      return {...state,
-        contacts: [...state.contacts, action.data]}
-    case 'SERVICE':
-      return {contacts: state.contacts.filter(item => item.id !== action.data)}    
-    default:
-      return state;
-  }
-}
-
-const store = createStore(reducer)
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>

@@ -7,9 +7,10 @@ function AddServiceForm(props) {
   const name = useRef(null)
   const price = useRef(null)
   const items = useSelector(state => state.services)
+  const id  = 0;
 
-  //name.current.value = editName || ""
-  //price.current.value = editPrice || ""
+  name.current.value = items[id].name || ""
+  price.current.value = items[id].price || ""
   
 
   function handleSubmit(e) {

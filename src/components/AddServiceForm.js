@@ -1,16 +1,17 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect,  useSelector} from 'react-redux'
-import { addService } from '../store/actions'
+import { addService, seekService } from '../store/actions'
 import { nanoid } from 'nanoid'
 
 function AddServiceForm(props) {
   const name = useRef(null)
   const price = useRef(null)
-  const items = useSelector(state => state.services)
-  const id  = 0;
+  //const items = useSelector(state => state.services)
+  
+  //const id  = 0; // ?????????????????????????????????????
 
-  name.current.value = items[id].name || ""
-  price.current.value = items[id].price || ""
+  //name.current.value = items[id].name || ""
+  //price.current.value = items[id].price || ""
   
 
   function handleSubmit(e) {
@@ -21,21 +22,34 @@ function AddServiceForm(props) {
     price.current.value = ""
     name.current.focus()
   }
+
+  function handleChange(e){
+    e.preventDefault()
+    props.seekService(e.target.value)
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" 
-        placeholder="Add name" 
-        ref={name} />
-        <input type="number" 
-        placeholder="Add price" 
-        ref={price} />
-      <button type="submit">Save</button>
-    </form>
-  );
+    <div className="add-service">
+      <form onSubmit={handleSubmit}>
+        <input type="text" 
+          placeholder="Add name" 
+          ref={name} />
+          <input type="number" 
+          placeholder="Add price" 
+          ref={price} />
+        <button type="submit">Save</button>
+      </form>
+      <input className="seek"
+          type="text" 
+          placeholder="Поиск" 
+          onChange={handleChange} />
+    </div>
+  )
 }
 
 const mapDipatchToProps = {
-  addService
+  addService,
+  seekService
 }
 
 export default connect(null, mapDipatchToProps)(AddServiceForm)

@@ -1,13 +1,11 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { delService } from '../store/actions'
 //import { editService } from '../store/actions'
 
 function ServiceList(props) {
 
-  //const items = useSelector(state => state.services)
-  //console.log(items)
-
+  //console.log(props.services)
   function edit(id){
     //editService(id)
     delService(id)

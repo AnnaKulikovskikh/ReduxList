@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { connect,  useSelector} from 'react-redux'
 import { addService, seekService } from '../store/actions'
 import { nanoid } from 'nanoid'
@@ -6,13 +6,8 @@ import { nanoid } from 'nanoid'
 function AddServiceForm(props) {
   const name = useRef(null)
   const price = useRef(null)
-  //const items = useSelector(state => state.services)
-  
-  //const id  = 0; // ?????????????????????????????????????
-
-  //name.current.value = items[id].name || ""
-  //price.current.value = items[id].price || ""
-  
+  const inputName = useSelector(state => state.inputName)
+  const inputPrice = useSelector(state => state.inputPrice)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -23,7 +18,7 @@ function AddServiceForm(props) {
     name.current.focus()
   }
 
-  function handleChange(e){
+  function seek(e){
     e.preventDefault()
     props.seekService(e.target.value)
   }
@@ -32,17 +27,19 @@ function AddServiceForm(props) {
     <div className="add-service">
       <form onSubmit={handleSubmit}>
         <input type="text" 
-          placeholder="Add name" 
+          placeholder ="Add name"
+          value = {inputName}
           ref={name} />
           <input type="number" 
           placeholder="Add price" 
+          value = {inputPrice}
           ref={price} />
         <button type="submit">Save</button>
       </form>
       <input className="seek"
           type="text" 
-          placeholder="Поиск" 
-          onChange={handleChange} />
+          placeholder="Поиск"
+          onChange={seek} />
     </div>
   )
 }

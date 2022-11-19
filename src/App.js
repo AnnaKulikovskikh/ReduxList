@@ -1,12 +1,12 @@
 import './App.css'
-import PeopleList from './components/ServiceList'
-import AddPersonForm from './components/AddServiceForm'
+import ServiceList from './components/ServiceList'
+import AddServiceForm from './components/AddServiceForm'
 
 function App() {
   return (
     <div className="App">    
-      <AddPersonForm />
-      <PeopleList />
+      <AddServiceForm />
+      <ServiceList />
     </div>
   );
 }
